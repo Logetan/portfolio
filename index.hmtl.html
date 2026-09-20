@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logetan | Roblox Geliştirici Portfolyosu</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --card-border: #1e293b;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+        }
+
+        .badge {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0b0f19;
+        }
+
+        .btn-primary:hover {
+            background: #0ea5e9;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border: 1px solid var(--card-border);
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            color: #0b0f19;
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Lote<span>tan</span>.dev</div>
+        <nav>
+            <a href="#hakkimda">Hakkımda</a>
+            <a href="#yetenekler">Yetenekler</a>
+            <a href="#projeler">Projeler</a>
+            <a href="#iletisim">İletişim</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="badge">
+            <i class="fa-solid fa-circle" style="font-size: 8px; color: #38bdf8;"></i> Roblox & Luau Geliştiricisi
+        </div>
+        <h1>Merhaba, Ben <span>Logetan</span></h1>
+        <p>Roblox Studio için ölçeklenebilir oyun sistemleri, özel arayüzler ve gelişmiş Luau mekanikleri tasarlıyorum.</p>
+        <div class="btn-group">
+            <a href="#projeler" class="btn btn-primary">Projelerimi Gör</a>
+            <a href="#iletisim" class="btn btn-secondary">İletişime Geç</a>
+        </div>
+    </section>
+
+    <!-- Yetenekler -->
+    <section id="yetenekler" class="container">
+        <h2 class="section-title">Yetenekler & <span>Teknolojiler</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-code"></i>
+                <h3>Luau Scripting</h3>
+                <p>Modüler mimari, DataStore yönetimi, RemoteEvent güvenlik önlemleri ve optimize edilmiş döngüler.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-gamepad"></i>
+                <h3>Oyun Mekanikleri</h3>
+                <p>Hapishane rol yapma (Prison RP) sistemleri, tycoon yolları, etkileşimli menüler ve oylama mekanikleri.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-paint-brush"></i>
+                <h3>UI / Arayüz Tasarımı</h3>
+                <p>Koyu, minimalist ve modern temalı Roblox BillboardGui ve PlayerMenu arayüzleri.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-node-js"></i>
+                <h3>Discord Bots & Tools</h3>
+                <p>Node.js ve discord.js kullanarak geliştirilen bot altyapıları, otomasyonlar ve Railway entegrasyonları.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projeler -->
+    <section id="projeler" class="container" style="padding-top: 0;">
+        <h2 class="section-title">Seçilmiş <span>Projeler</span></h2>
+        <div class="projects-grid">
+            <!-- Proje 1 -->
+            <div class="project-card">
+                <div class="project-img">[ Proje Ekran Görüntüsü / GIF ]</div>
+                <div class="project-content">
+                    <h3>Prison Roleplay Yönetim Sistemi</h3>
+                    <p>Kapsamlı bir hapishane rol yapma sunucusu için geliştirilen otomatik gardiyan/mahkum rolleri, DataStore tabanlı ceza takip ve kontrol paneli.</p>
+                    <div class="tags">
+                        <span class="tag">Luau</span>
+                        <span class="tag">DataStore</span>
+                        <span class="tag">UI</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Proje 2 -->
+            <div class="project-card">
+                <div class="project-img">[ Proje Ekran Görüntüsü / GIF ]</div>
+                <div class="project-content">
+                    <h3>İnternet Cafe Tycoon Mekanikleri</h3>
+                    <p>Oyuncuların bilgisayar sistemlerini yönettiği, müşteri yapay zekası pathfinding ve gelir otomasyonunu içeren özel tycoon script paketi.</p>
+                    <div class="tags">
+                        <span class="tag">Luau</span>
+                        <span class="tag">Pathfinding</span>
+                        <span class="tag">Tycoon</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Proje 3 -->
+            <div class="project-card">
+                <div class="project-img">[ Proje Ekran Görüntüsü / GIF ]</div>
+                <div class="project-content">
+                    <h3>Etkileşimli Oyuncu Menüleri</h3>
+                    <p>BillboardGui destekli, pürüzsüz geçişlere sahip, performans dostu modern oyuncu etkileşim ve profil arayüzü tasarımı.</p>
+                    <div class="tags">
+                        <span class="tag">BillboardGui</span>
+                        <span class="tag">TweenService</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim -->
+    <section id="iletisim" class="container" style="padding-top: 0;">
+        <div class="contact-box">
+            <h3>Birlikte Çalışalım</h3>
+            <p>Bir oyun projeniz mi var veya ekibinize Roblox geliştiricisi mi arıyorsunuz? Benimle Discord üzerinden ya da e-posta ile iletişime geçebilirsiniz.</p>
+            <div class="social-links">
+                <a href="#" class="social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:epostan@ornek.com" class="social-btn" title="E-Posta"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Logetan. Tüm hakları saklıdır.</p>
+    </footer>
+
+</body>
+</html>
